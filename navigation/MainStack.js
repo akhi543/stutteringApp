@@ -3,7 +3,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Login from '../screens/Login';
 import Access from '../screens/Access';
 import Home from '../screens/Home';
-import { View } from 'react-native';
 
 const MainStack = createStackNavigator(
     {
@@ -24,8 +23,8 @@ const MainStack = createStackNavigator(
         Home: {
             screen: Home,
             navigationOptions: {
-                title: 'Home',
-                headerLeft: () => null,
+                title: 'Stuttering App',
+                headerLeft: () => null
             }
         }
     },

@@ -7,12 +7,6 @@ import All from './All';
 import Current from './Current';
 import Home from './Home';
 
-// const navigateOption = NavigationActions.navigate({
-//     routeName: 'Exercise',
-//     params: {},
-//     action: NavigationActions.navigate({ routeName: 'Exercise'})
-// });
-
 const resetAction = StackActions.reset ({
     index: 0,
     actions: [NavigationActions.navigate({ routeName: 'Home' })],

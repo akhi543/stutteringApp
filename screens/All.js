@@ -6,6 +6,7 @@ class All extends React.Component {
         return (
             <View style={styles.container}>
                 <Text>These are all your Exercises</Text>
+
             </View>
         );
     }

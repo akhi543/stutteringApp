@@ -1,8 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, Alert, BackHandler } from 'react-native';
 import { Button } from 'react-native-elements';
+import { createAppContainer } from 'react-navigation';
 
 import HandleBack from '../components/HandleBack';
+import HomeStack from '../navigation/HomeStack';
+
+const HomeContainer = createAppContainer(HomeStack);
 
 class Home extends React.Component {
   onBack = () => {
@@ -27,20 +31,7 @@ class Home extends React.Component {
   render() {
     return (
       <HandleBack onBack={this.onBack}>
-        <View style={styles.container}>
-            <View style={styles.button}>
-                <Button
-                    title='View current'
-                    onPress={() => this.props.navigation.navigate("Current")}
-                />
-            </View>
-            <View style={styles.button}>
-                <Button
-                    title='View all'
-                    onPress={() => this.props.navigation.navigate("All")}
-                />
-            </View>
-        </View>
+        <HomeContainer />
       </HandleBack>
     );
   }

@@ -5,7 +5,7 @@ class Social extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Hello, Dhatri!</Text>
+        <Text>Social</Text>
       </View>
     );
   }

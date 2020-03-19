@@ -7,12 +7,31 @@ import HandleBack from '../components/HandleBack';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {signedIn: true, name: this.props.navigation.state.params.name}
+    this.state = {signedIn: true, name: this.props.navigation.state.params.name, access: ''};
   }
   onSubmit = () => {
-    this.props.navigation.replace("Home", {
-      name: this.state.name,
-    });
+    if (this.state.access === "1234") {
+      this.props.navigation.replace("Home", {
+        name: this.state.name,
+      });
+    }
+    else {
+      Alert.alert(
+        title="Sorry, the access code you entered is incorrect.",
+        message="Try again or press exit to close the app.",
+        buttons=[
+          {
+            text: "Enter another code", onPress: () => {}, style: 'cancel'
+          },
+          {
+            text: "Exit", onPress: () => {
+              BackHandler.exitApp()
+            }
+          }
+        ],
+        options={cancelable: false}
+      )
+    }
   }
   onBack = () => {
     Alert.alert(
@@ -42,14 +61,17 @@ class Login extends React.Component {
               </View>
               <View style={styles.button}>
                 <TextInput
-                  onSubmitEditing={() => this.onSubmit}
+                  onSubmitEditing={this.onSubmit}
                   placeholder="Unique access code"
                   style={styles.input}
                   returnKeyType="go"
+                  keyboardType="number-pad"
+                  value={this.state.access}
+                  onChangeText={(access) => this.setState({access})}
                 />
                 <Button
                   title='Submit'
-                  onPress={() => this.onSubmit}
+                  onPress={this.onSubmit}
                 />
               </View>
             </KeyboardAvoidingView>
