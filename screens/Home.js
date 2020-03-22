@@ -4,9 +4,9 @@ import { Button } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 
 import HandleBack from '../components/HandleBack';
-import HomeStack from '../navigation/HomeStack';
+import HomeNavigator from '../navigation/HomeNavigator';
 
-const HomeContainer = createAppContainer(HomeStack);
+const HomeContainer = createAppContainer(HomeNavigator);
 
 class Home extends React.Component {
   onBack = () => {

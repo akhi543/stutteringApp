@@ -7,12 +7,12 @@ import HandleBack from '../components/HandleBack';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {signedIn: true, name: this.props.navigation.state.params.name, access: ''};
+    this.state = {signedIn: true, user: this.props.navigation.state.params.user, access: ''};
   }
   onSubmit = () => {
     if (this.state.access === "1234") {
-      this.props.navigation.replace("Home", {
-        name: this.state.name,
+      this.props.navigation.navigate("Dashboard", {
+        user: this.state.user,
       });
     }
     else {
@@ -57,7 +57,7 @@ class Login extends React.Component {
         <HandleBack onBack={this.onBack}>
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
               <View style={styles.titleContainer}>
-                <Text style={styles.title}>Hi {this.state.name}, welcome to the Stuttering App. Please enter your unique Access code to enter:</Text>
+                <Text style={styles.title}>Hi {this.state.user.name}, welcome to the Stuttering App. Please enter your unique Access code for the email address {this.state.user.email} to enter:</Text>
               </View>
               <View style={styles.button}>
                 <TextInput

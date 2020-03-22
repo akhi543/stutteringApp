@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Social from '../screens/Social';
 import All from '../screens/All';
 
-const HomeStack = createBottomTabNavigator(
+const HomeNavigator = createBottomTabNavigator(
     {
         Exercise: {
             screen: All,
@@ -29,12 +29,13 @@ const HomeStack = createBottomTabNavigator(
     },
     {
         initialRouteName: 'Exercise',
-        defaultNavigationOptions: ({ navigation }) => ({
-            tabBarOnPress: ({ navigation, defaultHandler }) => {
-                defaultHandler();
+        navigationOptions: ({ navigation }) => {
+            const { routeName } = navigation.state.routes[navigation.state.index];
+            return {
+                headerTitle: routeName
             }
-        })
+        },
     }
 );
 
-export default HomeStack;
+export default HomeNavigator;

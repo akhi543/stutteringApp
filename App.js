@@ -1,8 +1,8 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
-import MainStack from './navigation/MainStack';
+import MainNavigator from './navigation/MainNavigator';
 
-const AppContainer = createAppContainer(MainStack);
+const AppContainer = createAppContainer(MainNavigator);
 
 
 export default class App extends React.Component {

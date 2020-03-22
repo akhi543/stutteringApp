@@ -8,7 +8,7 @@ import * as Google from 'expo-google-app-auth';
 class Login extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {signedIn: false, name: ''}
+    this.state = {signedIn: false, user: null}
   }
   
   signIn = async () => {
@@ -21,10 +21,10 @@ class Login extends React.Component {
       if (result.type === 'success') {
         this.setState({
           signedIn: true,
-          name: result.user.name,
+          user: result.user,
         })
-        this.props.navigation.replace('Access', {
-          name: this.state.name
+        this.props.navigation.navigate('Access', {
+          user: this.state.user
         });
       }
       else {
