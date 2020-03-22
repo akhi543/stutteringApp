@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Alert, BackHandler } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity, Text, Alert, BackHandler, AsyncStorage } from 'react-native';
 
 import HandleBack from '../components/HandleBack';
 
@@ -9,6 +9,19 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {signedIn: false, user: null}
+  }
+
+  storeCredential = async () => {
+    let obj = {
+      name: this.state.user.name,
+      email: this.state.user.email,
+    }
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify(obj));
+    }
+    catch(error) {
+      console.log(error);
+    }
   }
   
   signIn = async () => {
@@ -23,6 +36,7 @@ class Login extends React.Component {
           signedIn: true,
           user: result.user,
         })
+        this.storeCredential();
         this.props.navigation.navigate('Access', {
           user: this.state.user
         });

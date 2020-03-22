@@ -1,13 +1,23 @@
 import React from 'react';
-import { Text, StyleSheet, View, Alert, BackHandler, TextInput, KeyboardAvoidingView } from 'react-native';
+import { Text, StyleSheet, View, Alert, BackHandler, TextInput, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import HandleBack from '../components/HandleBack';
 
-class Login extends React.Component {
+class Access extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {signedIn: true, user: this.props.navigation.state.params.user, access: ''};
+    this.state = {loaded: false, signedIn: true, user: null, access: ''};
+  }
+  getData = async () => {
+    let value = await AsyncStorage.getItem('user');
+    let parsed = JSON.parse(value);
+    this.setState(
+      {
+        loaded: true,
+        user: parsed
+      }
+    );
   }
   onSubmit = () => {
     if (this.state.access === "1234") {
@@ -52,7 +62,18 @@ class Login extends React.Component {
     
     return true;
   }
+  
+  UNSAFE_componentWillMount() {
+    this.getData().done();
+  }
   render() {
+    if (this.state.loaded === false) {
+      return (
+        <View style={styles.container}>
+          <Text>Loading screen...</Text>
+        </View>
+      )
+    }
     return (
         <HandleBack onBack={this.onBack}>
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -80,7 +101,7 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Access;
 
 const styles = StyleSheet.create({
   container: {

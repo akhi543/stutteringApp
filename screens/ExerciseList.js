@@ -1,9 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, BackHandler, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Alert, BackHandler, TouchableOpacity, AsyncStorage } from 'react-native';
 
 import HandleBack from '../components/HandleBack';
 
 class ExerciseList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {loaded: false, user: null};
+  }
+  getData = async () => {
+    try {
+      let value = await AsyncStorage.getItem('user');
+      let parsed = JSON.parse(value);
+      this.setState(
+        {
+          loaded: true,
+          user: parsed,
+        }
+      );
+    }
+    catch(error) {
+      console.log(error);
+    }
+  }
   onBack = () => {
     Alert.alert(
       "You are about to exit the application.",
@@ -23,7 +42,19 @@ class ExerciseList extends React.Component {
     
     return true;
   }
+
+  UNSAFE_componentWillMount() {
+    this.getData().done();
+  }
+
   render() {
+    if (this.state.loaded === false) {
+      return (
+        <View style={styles.container}>
+          <Text>Loading screen...</Text>
+        </View>
+      )
+    }
     return (
       <HandleBack onBack={this.onBack}>
         <View style={styles.container}>
