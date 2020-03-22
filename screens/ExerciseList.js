@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     height: 40,
     width: 200,
-    borderRadius: 10,
+    borderRadius: 25,
     justifyContent: 'center',
-    margin: 5
+    margin: 15
   },
   buttonTitle: {
     color: '#fff',

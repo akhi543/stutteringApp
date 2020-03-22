@@ -118,19 +118,22 @@ const styles = StyleSheet.create({
     opacity: 0.4
   },
   buttonContainer: {
-    padding: 20,
-    marginLeft: 10,
-    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -35
   },
   button: {
     backgroundColor: '#7f8c8d',
     opacity: 0.7,
     flexDirection: 'row',
-    height: 50,
+    height: 70,
     paddingTop: 5,
     width: 350,
-    justifyContent: 'space-evenly',
-    marginLeft: 3
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 3,
+    marginBottom: 100,
+    borderRadius: 35
   },
   buttonTitle: {
     padding: 10,
