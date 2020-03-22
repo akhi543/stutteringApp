@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { createStackNavigator } from 'react-navigation-stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -13,6 +14,7 @@ const DashboardStackNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => {
             return {
+                headerShown: false,
                 headerLeft: () => <Icon style={{paddingLeft: 10}} name="md-menu" size={30} onPress={() => navigation.openDrawer()} />
             }
         }

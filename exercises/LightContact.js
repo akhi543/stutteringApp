@@ -1,18 +1,18 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-class ContinuousSpeech extends React.Component {
+class LightContact extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Continuous Speech</Text>
+                <Text>Light Contact</Text>
 
             </View>
         );
     }
 }
 
-export default ContinuousSpeech;
+export default LightContact;
 
 const styles = StyleSheet.create({
     container: {

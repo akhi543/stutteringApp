@@ -1,12 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert, BackHandler } from 'react-native';
+
+import HandleBack from '../components/HandleBack';
 
 class Social extends React.Component {
+  onBack = () => {
+    Alert.alert(
+      "You are about to exit the application.",
+      "Are you sure you want to proceed?",
+      [
+        {
+          text: "Cancel", onPress: () => {}, style: 'cancel'
+        },
+        {
+          text: "Exit", onPress: () => {
+            BackHandler.exitApp()
+          }
+        }
+      ],
+      { cancelable: false },
+    );
+    
+    return true;
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Social</Text>
-      </View>
+      <HandleBack onBack={this.onBack}>
+        <View style={styles.container}>
+          <Text>Social</Text>
+        </View>
+      </HandleBack>
     );
   }
 }

@@ -2,13 +2,13 @@ import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Social from '../screens/Social';
-import All from '../screens/All';
+import SocialNavigator from '../navigation/SocialNavigator';
+import ExerciseNavigator from '../navigation/ExerciseNavigator';
 
 const HomeNavigator = createBottomTabNavigator(
     {
         Exercise: {
-            screen: All,
+            screen: ExerciseNavigator,
             navigationOptions: {
                 tabBarLabel: "EXERCISE",
                 tabBarIcon: ({tintColor}) => (
@@ -17,7 +17,7 @@ const HomeNavigator = createBottomTabNavigator(
             }
         },
         Social: {
-            screen: Social,
+            screen: SocialNavigator,
             navigationOptions: {
                 tabBarLabel: "SOCIAL",
                 title: "Social",
@@ -32,6 +32,7 @@ const HomeNavigator = createBottomTabNavigator(
         navigationOptions: ({ navigation }) => {
             const { routeName } = navigation.state.routes[navigation.state.index];
             return {
+                headerShown: false,
                 headerTitle: routeName
             }
         },
