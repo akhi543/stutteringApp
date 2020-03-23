@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, View, Alert, BackHandler, TextInput, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
-import { Constants } from 'expo-constants';
+import Constants from 'expo-constants';
 
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../src/graphql/queries';

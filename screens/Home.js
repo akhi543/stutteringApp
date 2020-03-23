@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Alert, BackHandler } from 'react-native';
 import { Button } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
-import { Constants } from 'expo-constants';
+import Constants from 'expo-constants';
 
 import HandleBack from '../components/HandleBack';
 import HomeNavigator from '../navigation/HomeNavigator';

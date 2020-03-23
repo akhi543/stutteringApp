@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text, Alert, BackHandler, AsyncStorage } from 'react-native';
 
-import { Constants } from 'expo-constants';
+import Constants from 'expo-constants';
 
 import HandleBack from '../components/HandleBack';
 

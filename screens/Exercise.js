@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer, StackActions, NavigationActions } from 'react-navigation';
-import { Constants } from 'expo-constants';
+import Constants from 'expo-constants';
 
 import All from './All';
 import Current from './Current';
