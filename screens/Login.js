@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text, Alert, BackHandler, AsyncStorage } from 'react-native';
 
+import { Constants } from 'expo-constants';
+
 import HandleBack from '../components/HandleBack';
 
 import * as Google from 'expo-google-app-auth';
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#2c3e50',
-    paddingTop: Expo.Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight,
     justifyContent: 'space-between',
   },
   logoContainer: {

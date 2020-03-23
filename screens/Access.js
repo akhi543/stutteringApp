@@ -1,6 +1,10 @@
 import React from 'react';
 import { Text, StyleSheet, View, Alert, BackHandler, TextInput, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
+import { Constants } from 'expo-constants';
+
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '../src/graphql/queries';
 
 import HandleBack from '../components/HandleBack';
 
@@ -19,19 +23,17 @@ class Access extends React.Component {
       }
     );
   }
-  onSubmit = () => {
-    if (this.state.access === "1234") {
-      this.props.navigation.navigate("Dashboard", {
-        user: this.state.user,
-      });
-    }
-    else {
+  onSubmit = async () => {
+    const oneTodo = await API.graphql(graphqlOperation(queries.getAccessCode, { userEmail: this.state.user.email }));
+    if (oneTodo.data.getAccessCode === null) {
       Alert.alert(
-        title="Sorry, the access code you entered is incorrect.",
-        message="Try again or press exit to close the app.",
+        title="Email address not present",
+        message="Please wait for the email to be added. Press exit to close the app or try a different account.",
         buttons=[
           {
-            text: "Enter another code", onPress: () => {}, style: 'cancel'
+            text: "Go Back", onPress: () => {
+              this.props.navigation.navigate("Login")
+            }
           },
           {
             text: "Exit", onPress: () => {
@@ -41,6 +43,30 @@ class Access extends React.Component {
         ],
         options={cancelable: false}
       )
+    }
+    else {
+      if (this.state.access === oneTodo.data.getAccessCode.accessCode) {
+        this.props.navigation.navigate("Dashboard", {
+          user: this.state.user,
+        });
+      }
+      else {
+        Alert.alert(
+          title="Sorry, the access code you entered is incorrect.",
+          message="Try again or press exit to close the app.",
+          buttons=[
+            {
+              text: "Enter another code", onPress: () => {}, style: 'cancel'
+            },
+            {
+              text: "Exit", onPress: () => {
+                BackHandler.exitApp()
+              }
+            }
+          ],
+          options={cancelable: false}
+        )
+      }
     }
   }
   onBack = () => {
@@ -109,7 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: Expo.Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight,
     padding:20,
   },
   titleContainer: {
