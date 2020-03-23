@@ -56,9 +56,7 @@ class ContinuousSpeech extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Text>Continuous Speech</Text>
-                <Text>{this.state.user.name} {this.state.user.email}</Text>
-                <Text>{this.props.navigation.state.routeName} {new Date().toDateString()}</Text>
+                <Text style={{marginVertical: 10}}>Continuous Speech</Text>
                 <Button title="Submit" onPress={this.createExerciseEntry}></Button>
             </View>
         );

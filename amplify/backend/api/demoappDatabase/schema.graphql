@@ -1,0 +1,12 @@
+type Exercise @model {
+  id: ID!
+  userName: String!
+  userEmail: String!
+  exerciseName: String!
+  date: String!
+  data: String
+}
+type AccessCode @model @key(fields: ["userEmail"]){
+  userEmail: String!
+  accessCode: String
+}
