@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from '../Screens/Home';
+import Assigned from '../../screens/Assigned';
 
 import renderer from 'react-test-renderer';
 
 test('Renders correctly', () => {
-    const tree = renderer.create('<Home />').toJSON();
+    const tree = renderer.create('<Assigned />').toJSON();
     expect(tree).toMatchSnapshot();
 });

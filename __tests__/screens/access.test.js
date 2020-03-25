@@ -1,9 +1,9 @@
 import React from 'react';
-import All from '../Screens/All';
+import Access from '../../screens/Access';
 
 import renderer from 'react-test-renderer';
 
 test('Renders correctly', () => {
-    const tree = renderer.create('<All />').toJSON();
+    const tree = renderer.create('<Access />').toJSON();
     expect(tree).toMatchSnapshot();
 });
