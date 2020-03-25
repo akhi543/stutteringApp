@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Alert, BackHandler, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity, Text, Alert, BackHandler, AsyncStorage, ToastAndroid } from 'react-native';
 
 import Constants from 'expo-constants';
 
@@ -44,7 +44,8 @@ class Login extends React.Component {
         });
       }
       else {
-        console.log('Cancelled')
+        console.log('Cancelled');
+        ToastAndroid.show('Please try again', ToastAndroid.SHORT);
       }
     }
     catch (e) {
