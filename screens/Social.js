@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, Alert, BackHandler } from 'react-native';
 
 import HandleBack from '../components/HandleBack';
 
+/**
+ * This is the base for the social component of the app.
+ */
 class Social extends React.Component {
   onBack = () => {
     Alert.alert(

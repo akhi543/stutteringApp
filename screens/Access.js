@@ -8,11 +8,26 @@ import * as queries from '../src/graphql/queries';
 
 import HandleBack from '../components/HandleBack';
 
+
+/**
+ * This is the code for the Access screen.
+ * The screen is designed to take the Access code of the user
+ * as input before granting access to use the application.
+ * To ensure privacy, this access code will be privately stored
+ * in DynamoDB and can only be read by the client while trying
+ * to authorize access.
+ */
 class Access extends React.Component {
   constructor(props) {
     super(props);
     this.state = {loaded: false, signedIn: true, user: null, access: ''};
   }
+
+  /**
+   * This function uses AsyncStorage to access the local user
+   * information including name and email. This is used to
+   * query the database to verify the access code.
+   */
   getData = async () => {
     let value = await AsyncStorage.getItem('user');
     let parsed = JSON.parse(value);
@@ -23,6 +38,15 @@ class Access extends React.Component {
       }
     );
   }
+
+  /**
+   * This function has been written to query the database against
+   * the user email and verify the access code stored. The navigation is
+   * setup so that the user may try a different access code in case
+   * the verification fails, or else the user may try another email if
+   * the provided email is not present in the database. In such a case, the
+   * user will be prompted to be taken back to the login screen.
+   */
   onSubmit = async () => {
     const oneTodo = await API.graphql(graphqlOperation(queries.getAccessCode, { userEmail: this.state.user.email }));
     if (oneTodo.data.getAccessCode === null) {

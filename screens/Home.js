@@ -9,6 +9,11 @@ import HomeNavigator from '../navigation/HomeNavigator';
 
 const HomeContainer = createAppContainer(HomeNavigator);
 
+/**
+ * This is the container for the Home stack navigator of the app.
+ * This navigator is responsible for the exercise screens and the
+ * social feed screen.
+ */
 class Home extends React.Component {
   onBack = () => {
     Alert.alert(

@@ -7,12 +7,22 @@ import HandleBack from '../components/HandleBack';
 
 import * as Google from 'expo-google-app-auth';
 
+/**
+ * This is the login screen of the app. It has one button that
+ * takes the user to Google sign in page which returns a Google user object.
+ * This screen is the first screen of the application.
+ */
 class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {signedIn: false, user: null}
   }
 
+  /**
+   * This method is used to store the returned Google user object
+   * in the local memory using AsyncStorage. This information is used
+   * later in the app.
+   */
   storeCredential = async () => {
     let obj = {
       name: this.state.user.name,
@@ -26,6 +36,11 @@ class Login extends React.Component {
     }
   }
   
+  /**
+   * This is the Google sign in method. It uses the Google Client ID to
+   * fetch the Google object for the user trying to login.
+   * The method returns the Google object if the sign in is successful.
+   */
   signIn = async () => {
     try {
       const result = await Google.logInAsync({

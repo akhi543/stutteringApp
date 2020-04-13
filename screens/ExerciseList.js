@@ -3,6 +3,12 @@ import { StyleSheet, Text, View, Alert, BackHandler, TouchableOpacity, AsyncStor
 
 import HandleBack from '../components/HandleBack';
 
+/**
+ * This screen lists all the exercises that are in the app.
+ * Each button takes the user to a new dedicated screen for the
+ * selected exercise. That screen contains the video exemplar and a written
+ * description of the exercise.
+ */
 class ExerciseList extends React.Component {
   constructor(props) {
     super(props);

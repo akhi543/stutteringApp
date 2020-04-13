@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+/**
+ * Empty component that may be reused in the dashboard of the app.
+ */
 class Dashboard extends React.Component {
     render() {
         return (
             <View style={styles.container}>
                 <Text>Dashboard Screen</Text>
-
             </View>
         );
     }
