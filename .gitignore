@@ -13,6 +13,9 @@ web-report/
 # macOS
 .DS_Store
 
+# VS Code
+*.code-workspace
+
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*
