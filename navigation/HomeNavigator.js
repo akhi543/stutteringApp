@@ -5,6 +5,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import SocialNavigator from '../navigation/SocialNavigator';
 import ExerciseNavigator from '../navigation/ExerciseNavigator';
 
+/**
+ * This is the Home navigator. Home contains the exercises navigator and the
+ * Social navigator. It is a bottom tab navigator with two tabs.
+ */
 const HomeNavigator = createBottomTabNavigator(
     {
         Exercise: {

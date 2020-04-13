@@ -10,6 +10,11 @@ import EasyOnset from '../exercises/EasyOnset';
 import LightContact from '../exercises/LightContact';
 import StretchSpeech from '../exercises/StretchSpeech';
 
+/**
+ * This is the Exercise navigator that is used to navigate between
+ * different exercise screens. It can be used to add more exercises easily
+ * to the existing app navigation.
+ */
 const ExerciseNavigator = createStackNavigator(
     {
         ExerciseList: {
