@@ -10,6 +10,11 @@ API.configure(config)             // Configure Amplify
 PubSub.configure(config)
 
 
+/**
+ * This is the class for the Continuous Speech Exercise.
+ * The screen provides video exemplar as well as a written
+ * description of the exercise for the user.
+ */
 class ContinuousSpeech extends React.Component {
     constructor(props) {
         super(props);
@@ -36,6 +41,12 @@ class ContinuousSpeech extends React.Component {
     UNSAFE_componentWillMount() {
         this.getData().done();
     }
+
+    /**
+     * This method communicates with the DynamoDB and creates a new
+     * item in the Exercise table. The metadata it stores is used to
+     * determine various stats about the user.
+     */
     createExerciseEntry = async() => {
         const entryData = {
             userName: this.state.user.name,

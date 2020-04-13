@@ -48,6 +48,8 @@ class Access extends React.Component {
    * user will be prompted to be taken back to the login screen.
    */
   onSubmit = async () => {
+    
+    // This method is used to query the DynamoDB
     const oneTodo = await API.graphql(graphqlOperation(queries.getAccessCode, { userEmail: this.state.user.email }));
     if (oneTodo.data.getAccessCode === null) {
       Alert.alert(
