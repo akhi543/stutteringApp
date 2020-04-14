@@ -13,6 +13,12 @@ web-report/
 # macOS
 .DS_Store
 
+#python
+venv
+data
+sample
+__pycache__
+
 # VS Code
 *.code-workspace
 
