@@ -50,8 +50,8 @@ class Access extends React.Component {
   onSubmit = async () => {
     
     // This method is used to query the DynamoDB
-    const oneTodo = await API.graphql(graphqlOperation(queries.getAccessCode, { userEmail: this.state.user.email }));
-    if (oneTodo.data.getAccessCode === null) {
+    const userObj = await API.graphql(graphqlOperation(queries.getAccessCode, { userEmail: this.state.user.email }));
+    if (userObj.data.getAccessCode === null) {
       Alert.alert(
         title="Email address not present",
         message="Please wait for the email to be added. Press exit to close the app or try a different account.",
@@ -71,7 +71,7 @@ class Access extends React.Component {
       )
     }
     else {
-      if (this.state.access === oneTodo.data.getAccessCode.accessCode) {
+      if (this.state.access === userObj.data.getAccessCode.accessCode) {
         this.props.navigation.navigate("Dashboard", {
           user: this.state.user,
         });
