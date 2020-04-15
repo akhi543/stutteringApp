@@ -93,6 +93,7 @@ class Myprofile extends React.Component {
         </View>
       )
     }
+    console.log("this.state.user.photoUrl: " + this.state.user.photoUrl);
     return (
       <HandleBack onBack={this.onBack}>
       <SafeAreaView style={styles.container}>

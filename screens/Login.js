@@ -27,6 +27,7 @@ class Login extends React.Component {
     let obj = {
       name: this.state.user.name,
       email: this.state.user.email,
+      photoUrl: this.state.user.photoUrl
     }
     try {
       await AsyncStorage.setItem('user', JSON.stringify(obj));
