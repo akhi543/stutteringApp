@@ -82,6 +82,23 @@ class Myprofile extends React.Component {
     );
     return true;
   }
+  onLogout = async () => {
+    Alert.alert(
+      "You are about to logout.",
+      "Are you sure you want to proceed?",
+      [
+        {
+          text: "Cancel", onPress: () => {}, style: 'cancel'
+        },
+        {
+          text: "Logout", onPress: () => {
+            AsyncStorage.clear();
+            this.props.navigation.navigate("Login");
+          }
+        }
+      ]
+    )
+  }
   UNSAFE_componentWillMount() {
     this.fetchData().done();
   }
@@ -141,7 +158,7 @@ class Myprofile extends React.Component {
               <DataTable.Cell numeric>{this.state.exerciseData.stretchSpeech}</DataTable.Cell>
             </DataTable.Row>    
           </DataTable>
-          <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate("Login")}}><Text style={styles.buttonTitle}>Lougout</Text></TouchableOpacity>      
+          <TouchableOpacity style={styles.button} onPress={this.onLogout}><Text style={styles.buttonTitle}>Logout</Text></TouchableOpacity>      
         </ScrollView >
       </SafeAreaView>
 

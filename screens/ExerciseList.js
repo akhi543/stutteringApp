@@ -56,9 +56,11 @@ class ExerciseList extends React.Component {
   render() {
     if (this.state.loaded === false) {
       return (
-        <View style={styles.container}>
-          <Text>Loading screen...</Text>
-        </View>
+        <HandleBack onBack={this.onBack}>
+          <View style={styles.container}>
+            <Text>Loading screen...</Text>
+          </View>
+        </HandleBack>
       )
     }
     return (
@@ -88,7 +90,8 @@ const styles = StyleSheet.create({
   title: {
     color: '#34495e',
     fontSize: 30,
-    margin: 20
+    margin: 20,
+    fontFamily: "monospace"
   },
   button: {
     backgroundColor: '#3498db',
@@ -102,6 +105,7 @@ const styles = StyleSheet.create({
   buttonTitle: {
     color: '#fff',
     textAlign: 'center',
-    fontSize: 17
+    fontSize: 17,
+    fontFamily: "serif"
   }
 });

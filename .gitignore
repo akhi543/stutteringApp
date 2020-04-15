@@ -22,6 +22,9 @@ __pycache__
 # VS Code
 *.code-workspace
 
+#assets
+*.mp4
+
 #amplify
 amplify/
 build/

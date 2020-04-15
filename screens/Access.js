@@ -128,7 +128,7 @@ class Access extends React.Component {
     }
     return (
         <HandleBack onBack={this.onBack}>
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
+            <KeyboardAvoidingView style={styles.container}>
               <View style={styles.titleContainer}>
                 <Text style={styles.title}>Hi {this.state.user.name}, welcome to the Stuttering App. Please enter your unique Access code for the email address {this.state.user.email} to enter:</Text>
               </View>
