@@ -5,11 +5,12 @@ Course Instructor: Dr. Keith Shafer<br>
 Project Sponsor: Dr. Christopher Bartlett<br>
 
 #### Description
-```
 The Stuttering App was developed as part of the Capstone Project, CSE 5911 at The Ohio State University, Spring 2019. This project was motivated by the advances seen in speech therapy and how this process has alleviated the effect of stutter for many people.
 
 This app aims to provide the accessibility of such speech exercises to its users who wish to practice in between therapy sessions as well as when they are away. Part of the motivation also comes from the active engagement that this whole therapy process needs and a mobile application is a way to further help the cause.
-```
+
+
+<hr>
 
 #### Requirements
 The project is developed in React Native. In order to run the app, install the following:
@@ -25,8 +26,9 @@ amplify configure
 amplify pull
 ```
 
+<hr>
+
 #### Getting Started
-```
 Clone the repository to your local machine. You may also choose to fork the repository or download the code as zip file to start developing.
 
 In order to run the project, make sure that the amplify app is configured.
@@ -38,7 +40,8 @@ Once all the dependencies are installed, run expo start.
 expo start
 
 Using the expo client, the app will run on any Android device as long as the expo client is alive.
-```
+
+<hr>
 
 ### Using the App
 #### Start and Login
