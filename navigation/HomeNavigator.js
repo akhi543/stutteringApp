@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import SocialNavigator from '../navigation/SocialNavigator';
 import ExerciseNavigator from '../navigation/ExerciseNavigator';
+import MyprofileNavigator from '../navigation/MyprofileNavigator';
 
 /**
  * This is the Home navigator. Home contains the exercises navigator and the
@@ -25,6 +26,16 @@ const HomeNavigator = createBottomTabNavigator(
             navigationOptions: {
                 tabBarLabel: "SOCIAL",
                 title: "Social",
+                tabBarIcon: ({tintColor}) => (
+                    <Icon name="md-people" color={tintColor} size={24} />
+                )
+            }
+        },
+        Myprofile: {
+            screen: MyprofileNavigator,
+            navigationOptions: {
+                tabBarLabel: "You",
+                title: "You",
                 tabBarIcon: ({tintColor}) => (
                     <Icon name="md-people" color={tintColor} size={24} />
                 )

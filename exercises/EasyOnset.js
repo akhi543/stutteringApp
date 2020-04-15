@@ -1,19 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Text, Button, AsyncStorage, TouchableOpacity } from 'react-native';
 import API, { graphqlOperation } from '@aws-amplify/api';
 import PubSub from '@aws-amplify/pubsub';
 import { createExercise } from '../src/graphql/mutations';
+import { Video } from 'expo-av';
 
 import config from '../aws-exports'
 
 API.configure(config)             // Configure Amplify
 PubSub.configure(config)
 
-/**
- * This is the class for the Easy Onset Exercise.
- * The screen provides video exemplar as well as a written
- * description of the exercise for the user.
- */
 class EasyOnset extends React.Component {
     constructor(props) {
         super(props);
@@ -40,12 +36,6 @@ class EasyOnset extends React.Component {
     UNSAFE_componentWillMount() {
         this.getData().done();
     }
-
-    /**
-     * This method communicates with the DynamoDB and creates a new
-     * item in the Exercise table. The metadata it stores is used to
-     * determine various stats about the user.
-     */
     createExerciseEntry = async() => {
         const entryData = {
             userName: this.state.user.name,
@@ -66,8 +56,29 @@ class EasyOnset extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Text style={{marginVertical: 10}}>Easy Onset</Text>
-                <Button title="Submit" onPress={this.createExerciseEntry}></Button>
+                <Video
+                      source={require('../assets/Easy_Onset.mp4')}
+                      useNativeControls={true}
+                      rate={1.0}
+                      volume={1.0}
+                      isMuted={false}
+                      resizeMode="cover"
+                      style={{ width: 300, height: 200 }}
+                    />
+                <Text style={{padding:20}}>
+                    Easy Onset reduces abrupt or excessive tension on the vocal folds, 
+                    which often leads to blocks. This technique involves a gentle vibration 
+                    of your vocal folds (i.e. a quiet voice), followed by a steady and 
+                    gradual increase in the strength of these vibrations (i.e. a louder voice). {"\n"}{"\n"}
+                    Follow these five steps:{"\n"}
+                    (1) Take a slow, full breath in{"\n"}
+                    (2) As you exhale, begin “voicing” – i.e. speak very quietly, gently, softly{"\n"}
+                    (3) Gradually begin to increase your loudness level{"\n"}
+                    (4) Reach a full loudness level (appropriate for normal conversation speech – i.e. not shouting){"\n"}
+                    (5) Gradually decrease this loudness level back to your original, gentle voice 
+                </Text>
+                <TouchableOpacity style={styles.button} onPress={this.createExerciseEntry}><Text style={styles.buttonTitle}>Log in db!</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate("Record")}}><Text style={styles.buttonTitle}>Practice Now!</Text></TouchableOpacity>
             </View>
         );
     }
@@ -78,8 +89,22 @@ export default EasyOnset;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#daedf8',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    button: {
+        backgroundColor: '#3498db',
+        opacity: 0.8,
+        height: 40,
+        width: 200,
+        borderRadius: 25,
+        justifyContent: 'center',
+        margin: 15
+    },
+    buttonTitle: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 17
     }
 });
