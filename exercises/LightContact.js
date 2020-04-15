@@ -1,19 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button, AsyncStorage } from 'react-native';
+import { StyleSheet, View, Text, Button, AsyncStorage, TouchableOpacity } from 'react-native';
 import API, { graphqlOperation } from '@aws-amplify/api';
 import PubSub from '@aws-amplify/pubsub';
 import { createExercise } from '../src/graphql/mutations';
+import { Video } from 'expo-av';
 
 import config from '../aws-exports'
 
 API.configure(config)             // Configure Amplify
 PubSub.configure(config)
 
-/**
- * This is the class for the Light Contact Exercise.
- * The screen provides video exemplar as well as a written
- * description of the exercise for the user.
- */
 class LightContact extends React.Component {
     constructor(props) {
         super(props);
@@ -40,12 +36,6 @@ class LightContact extends React.Component {
     UNSAFE_componentWillMount() {
         this.getData().done();
     }
-
-    /**
-     * This method communicates with the DynamoDB and creates a new
-     * item in the Exercise table. The metadata it stores is used to
-     * determine various stats about the user.
-     */
     createExerciseEntry = async() => {
         const entryData = {
             userName: this.state.user.name,
@@ -66,8 +56,23 @@ class LightContact extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Text style={{marginVertical: 10}}>Light Contact</Text>
-                <Button title="Submit" onPress={this.createExerciseEntry}></Button>
+                <Video
+                      source={require('../assets/Light_Contact.mp4')}
+                      useNativeControls={true}
+                      rate={1.0}
+                      volume={1.0}
+                      isMuted={false}
+                      resizeMode="cover"
+                      style={{ width: 300, height: 200 }}
+                    />
+                <Text style={{padding:20}}>
+                    Light Contact can be used for two categories of consonant sounds:{"\n"}
+                    (1) The first group is called fricatives, which includes the “SH, S, F, CH, TH, and H” sounds (i.e. “hissing sounds”). Here, Light Contact involves reducing the amount of airflow pushed through the vocal tract. This will reduce excess air loss on these sounds that may lead to prolongations.{"\n"}
+                    (2) The second group of sounds that light contact can be used with are called plosives or stop sounds. They include “P, B, T, D, K, and G” (i.e. “popping sounds”). Light Contact with these sounds involves very gentle contact of the articulators (lips, tongue), or not making full contact at all. This should prevent forceful stoppage of airflow that may lead to blocking. {"\n"}{"\n"}
+                    You need to make sure you vocalize fricatives and plosives so that people understand your message. Producing these sounds “lightly” (i.e. with little force or emphasis), will facilitate fluency. 
+                </Text>
+                <TouchableOpacity style={styles.button} onPress={this.createExerciseEntry}><Text style={styles.buttonTitle}>Log in db!</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate("Record")}}><Text style={styles.buttonTitle}>Practice Now!</Text></TouchableOpacity>
             </View>
         );
     }
@@ -78,8 +83,22 @@ export default LightContact;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#daedf8',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    button: {
+        backgroundColor: '#3498db',
+        opacity: 0.8,
+        height: 40,
+        width: 200,
+        borderRadius: 25,
+        justifyContent: 'center',
+        margin: 15
+    },
+    buttonTitle: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 17
     }
 });
