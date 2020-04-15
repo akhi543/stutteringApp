@@ -9,6 +9,7 @@ import FullBreath from '../exercises/FullBreath';
 import EasyOnset from '../exercises/EasyOnset';
 import LightContact from '../exercises/LightContact';
 import StretchSpeech from '../exercises/StretchSpeech';
+import Record from '../screens/Record';
 
 /**
  * This is the Exercise navigator that is used to navigate between
@@ -54,6 +55,12 @@ const ExerciseNavigator = createStackNavigator(
             screen: StretchSpeech,
             navigationOptions: {
                 headerTitle: "Stretch Speech"
+            }
+        },
+        Record: {
+            screen: Record,
+            navigationOptions: {
+                headerTitle: "Record"
             }
         }
     },
