@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     margin: 20
   },
   button: {
-    backgroundColor: '#3498db',
+    backgroundColor: '#daedf8',
     opacity: 0.8,
     height: 40,
     width: 200,
