@@ -81,7 +81,7 @@ export default ExerciseList;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#daedf8',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     margin: 20
   },
   button: {
-    backgroundColor: '#daedf8',
+    backgroundColor: '#3498db',
     opacity: 0.8,
     height: 40,
     width: 200,
