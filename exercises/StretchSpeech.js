@@ -29,6 +29,7 @@ class StretchSpeech extends React.Component {
           user: parsed
         }
       );
+      await AsyncStorage.setItem('exerciseName', JSON.stringify(this.props.navigation.state.routeName));
     }
     catch(error) {
       console.log(error);
@@ -90,6 +91,7 @@ export default StretchSpeech;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#daedf8',
     flex: 1,
     marginTop: Constants.statusBarHeight,
   },

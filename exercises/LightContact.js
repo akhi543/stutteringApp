@@ -28,6 +28,7 @@ class LightContact extends React.Component {
                     user: parsed
                 }
             );
+            await AsyncStorage.setItem('exerciseName', JSON.stringify(this.props.navigation.state.routeName));
         }
         catch(error) {
             console.log(error);
@@ -71,7 +72,6 @@ class LightContact extends React.Component {
                     (2) The second group of sounds that light contact can be used with are called plosives or stop sounds. They include “P, B, T, D, K, and G” (i.e. “popping sounds”). Light Contact with these sounds involves very gentle contact of the articulators (lips, tongue), or not making full contact at all. This should prevent forceful stoppage of airflow that may lead to blocking. {"\n"}{"\n"}
                     You need to make sure you vocalize fricatives and plosives so that people understand your message. Producing these sounds “lightly” (i.e. with little force or emphasis), will facilitate fluency. 
                 </Text>
-                <TouchableOpacity style={styles.button} onPress={this.createExerciseEntry}><Text style={styles.buttonTitle}>Log in db!</Text></TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate("Record")}}><Text style={styles.buttonTitle}>Practice Now!</Text></TouchableOpacity>
             </View>
         );
