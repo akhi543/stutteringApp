@@ -29,6 +29,7 @@ class ContinuousSpeech extends React.Component {
                     user: parsed
                 }
             );
+            await AsyncStorage.setItem('exerciseName', JSON.stringify(this.props.navigation.state.routeName));
         }
         catch(error) {
             console.log(error);
@@ -69,7 +70,6 @@ class ContinuousSpeech extends React.Component {
                     />
                 <Text style={{padding:20}}>Continuous Speech involves maintaining constant voicing from sound to sound within syllables (i.e. keep your vocal folds vibrating the entire time). These slow movements between sounds and syllables will help reduce choppy or jerky speech. Begin with an Easy Onset to help start a new syllable within a word and phrase. This will help prevent blocking mid-word or sentence, and improve speech flow. </Text>
                 <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate("Record")}}><Text style={styles.buttonTitle}>Practice Now!</Text></TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={this.createExerciseEntry}><Text style={styles.buttonTitle}>Log in db!</Text></TouchableOpacity>
             </View>
         );
     }

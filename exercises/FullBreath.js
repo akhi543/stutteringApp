@@ -28,6 +28,7 @@ class FullBreath extends React.Component {
                     user: parsed
                 }
             );
+            await AsyncStorage.setItem('exerciseName', JSON.stringify(this.props.navigation.state.routeName));
         }
         catch(error) {
             console.log(error);
@@ -77,7 +78,6 @@ class FullBreath extends React.Component {
                     (3) Let air out passively as you begin speaking (should feel you stomach naturally move back in without forcing it back in)
 
                 </Text>
-                <TouchableOpacity style={styles.button} onPress={this.createExerciseEntry}><Text style={styles.buttonTitle}>Log in db!</Text></TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate("Record")}}><Text style={styles.buttonTitle}>Practice Now!</Text></TouchableOpacity>
             </View>
         );

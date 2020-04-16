@@ -28,6 +28,7 @@ class EasyOnset extends React.Component {
                     user: parsed
                 }
             );
+            await AsyncStorage.setItem('exerciseName', JSON.stringify(this.props.navigation.state.routeName));
         }
         catch(error) {
             console.log(error);
@@ -77,7 +78,6 @@ class EasyOnset extends React.Component {
                     (4) Reach a full loudness level (appropriate for normal conversation speech – i.e. not shouting){"\n"}
                     (5) Gradually decrease this loudness level back to your original, gentle voice 
                 </Text>
-                <TouchableOpacity style={styles.button} onPress={this.createExerciseEntry}><Text style={styles.buttonTitle}>Log in db!</Text></TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate("Record")}}><Text style={styles.buttonTitle}>Practice Now!</Text></TouchableOpacity>
             </View>
         );
