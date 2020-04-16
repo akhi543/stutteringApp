@@ -7,7 +7,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import numpy as np
-from tqdm import tqdm
 import pickle
 
 import torch
@@ -19,6 +18,7 @@ from sklearn.metrics import f1_score, recall_score, precision_score
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+DATA_DIR = '/Volumes/Seagate/SeagateBackupPlus/Github/Capstone/data/'
 
 
 class Data:
@@ -137,7 +137,7 @@ def train_iters(model, data, config):
                                                         epoch, 100 * epoch / config.num_epochs, loss_avg))
         
         if epoch % config.save_every == 0:
-            torch.save(model, config.data_dir + 'model.p')
+            torch.save(model, config.model_file)
     
     print ('Training took %s' % (train_time(start)))
 
@@ -176,10 +176,11 @@ def evaluate(model, data):
 
 
 class Config1(object):
-    data_dir = '/Volumes/Seagate/SeagateBackupPlus/Github/Capstone/data/'
-    data_file = data_dir + 'data8k.p'
-    train_file = data_dir + 'train_data.p'
-    test_file = data_dir + 'test_data.p'
+    data_dir = DATA_DIR
+    data_file = os.path.join(data_dir, 'data8k.p')
+    train_file = os.path.join(data_dir, 'train_data.p')
+    test_file = os.path.join(data_dir, 'test_data.p')
+    model_file = os.path.join(data_dir, 'model.p')
     feature_dim = 39
     hidden_dim = 256
     num_layers = 2
@@ -191,10 +192,11 @@ class Config1(object):
 
 
 class Config2(object):
-    data_dir = '/Volumes/Seagate/SeagateBackupPlus/Github/Capstone/data/'
-    data_file = data_dir + 'data8k.p'
-    train_file = data_dir + 'train_data.p'
-    test_file = data_dir + 'test_data.p'
+    data_dir = DATA_DIR
+    data_file = os.path.join(data_dir, 'data8k.p')
+    train_file = os.path.join(data_dir, 'train_data.p')
+    test_file = os.path.join(data_dir, 'test_data.p')
+    model_file = os.path.join(data_dir, 'model.p')
     feature_dim = 39
     hidden_dim = 256
     num_layers = 2
@@ -215,9 +217,9 @@ def main(train_model=True, setting=0):
   test_data = Data(config.test_file)
 
   # Check for saved models
-  if os.path.isfile(config.data_dir + 'model.p'):
+  if os.path.isfile(config.model_file):
     print ('Found saved model, loading model from ', config.data_dir)
-    model = torch.load(config.data_dir + 'model.p', map_location=device)
+    model = torch.load(config.model_file, map_location=device)
     model = model.to(device)
     model.train()
   else:
@@ -232,7 +234,7 @@ def main(train_model=True, setting=0):
     )
 
   # Training Finished, save the model last time
-  torch.save(model, config.data_dir + 'model.p')
+  torch.save(model, config.model_file)
 
   # Evaluate the model
   model.eval()
