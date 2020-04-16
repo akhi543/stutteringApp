@@ -25,6 +25,13 @@ npm install
 amplify configure
 amplify pull
 ```
+The main task here is to configure all dependencies using npm installer, and then configuring AWS backend created for this app using amplify.
+
+You may follow the default commands and install any dependency using npm that is not installed by the default command.
+
+```npm install``` installs all dependencies in the package.json file.
+
+
 
 <hr>
 
@@ -36,10 +43,15 @@ Add the Google console key in the code (screens/Login.js [48:9]) to use the Goog
 
 After everything is configured, and StutteringApp is selected, run amplify pull command to fetch all cloud information about the project and setup the backend.
 
-Once all the dependencies are installed, run expo start.
-expo start
+Once all the dependencies are installed, run the expo client using the command, ```expo start```
 
 Using the expo client, the app will run on any Android device as long as the expo client is alive.
+
+```
+JS docstrings are present in each component
+There is in-code documentation available
+Docstrings are used to explain the behavior of the components
+```
 
 <hr>
 
